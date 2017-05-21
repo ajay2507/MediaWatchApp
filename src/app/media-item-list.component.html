@@ -1,6 +1,6 @@
 <!-- mediaItem is a input property(data flows in) & delete is a 
     output property event streams out of that property -->
 <section>
-    <media-item [mediaItem]="mediaItem"
+    <media-item  *ngFor="let mediaItem of mediaItems" [mediaItem]="mediaItem"
         (delete)="onMediaItemDelete($event)"></media-item>
 </section>
