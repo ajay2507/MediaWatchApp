@@ -12,6 +12,8 @@ import { CategoryListPipe } from './category-list.pipe';
 
 import { MediaItemService } from './media-item.service'
 
+import { lookupList, lookupListToken } from './media-providers'
+
 @NgModule({
   //include all components, directives & pipes
   declarations: [
@@ -28,7 +30,8 @@ import { MediaItemService } from './media-item.service'
     HttpModule
   ],
   providers: [
-  MediaItemService
+  MediaItemService,
+  { provide: 'lookupListToken', useValue : lookupList}
   ],
   bootstrap: [AppComponent]
 })
