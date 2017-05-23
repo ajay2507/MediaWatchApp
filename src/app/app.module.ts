@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, XHRBackend } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MediaItemComponent } from './media-item.component';
@@ -13,6 +13,8 @@ import { CategoryListPipe } from './category-list.pipe';
 import { MediaItemService } from './media-item.service'
 
 import { lookupList, lookupListToken } from './media-providers'
+import { MockXHRBackend } from './mock-xhr-backend'
+
 
 @NgModule({
   //include all components, directives & pipes
@@ -31,7 +33,8 @@ import { lookupList, lookupListToken } from './media-providers'
   ],
   providers: [
   MediaItemService,
-  { provide: 'lookupListToken', useValue : lookupList}
+  { provide: lookupListToken, useValue : lookupList},
+  { provide: XHRBackend, useClass: MockXHRBackend}
   ],
   bootstrap: [AppComponent]
 })
