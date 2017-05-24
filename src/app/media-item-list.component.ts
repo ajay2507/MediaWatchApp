@@ -10,19 +10,29 @@ import {MediaItemService} from './media-item.service';
 export class MediaItemListComponent{
     
     mediaItems;
-
+    mediaType;
     constructor(private mediaItemService : MediaItemService){
           
     }
-    
+
     // fetching all media items
     ngOnInit(){
-       this.mediaItems = this.mediaItemService.getMediaItems();
+       this.getMediaItems(this.mediaType);
     }
     
     // method to delete the media item.
     mediaItemDelete(mediaItem){
-       this.mediaItemService.deleteMediaItems(mediaItem); 
+
+       this.mediaItemService.deleteMediaItems(mediaItem).subscribe(
+           () => { this.getMediaItems(this.mediaType);}); 
+    }
+
+    getMediaItems(mediaType){
+        this.mediaType = mediaType;
+        this.mediaItemService.getMediaItems(mediaType).subscribe(
+            mediaItems => {
+                this.mediaItems = mediaItems;
+            })
     }
 
 }

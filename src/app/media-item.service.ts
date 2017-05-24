@@ -1,20 +1,31 @@
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
+@Injectable()
 export class MediaItemService{
-	//to get all media items
+
+    //construtor
+    constructor( private http:Http){}
+
+	//to get all media items from the mock service
 	getMediaItems(){
-       return this.mediaItems;
-	}
+       return this.http.get('mediaitems').map(response => {
+           return response.json().mediaItems;
+       });
+   }
 
 	//add new media items
 	addMediaItems(mediaItem){
-       return this.mediaItems.push(mediaItem);
+       return this.http.post('mediaitems',mediaItem).map(response => {
+
+       });
 	}
 
 	//delete media items
 	deleteMediaItems(mediaItem){
-	   let index = this.mediaItems.indexOf(mediaItem);
-       if(index > 0){
-           this.mediaItems.splice(index,1);
-       }
+	  return this.http.delete(`mediaitems/${mediaItem.id}`)
+      .map(response => {});
 	}
 
     //Initial list of movies

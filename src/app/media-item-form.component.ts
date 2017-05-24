@@ -51,6 +51,6 @@ export class MediaItemFormComponent{
 
     //submitting a function by clicking save button
 	 onSubmit(mediaItem) {
-        this.mediaItemService.addMediaItems(mediaItem);
+        this.mediaItemService.addMediaItems(mediaItem).subscribe();
     }
 }
