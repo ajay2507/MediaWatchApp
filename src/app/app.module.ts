@@ -12,7 +12,7 @@ import { CategoryListPipe } from './category-list.pipe';
 
 import { MediaItemService } from './media-item.service';
 
-import { lookupList, lookupListToken } from './media-providers';
+import { lookupLists, lookupListToken } from './media-providers';
 import { MockXHRBackend } from './mock-xhr-backend';
 import { routing } from './media.routing';
 
@@ -35,7 +35,7 @@ import { routing } from './media.routing';
   ],
   providers: [
   MediaItemService,
-  { provide: lookupListToken, useValue : lookupList},
+  { provide: lookupListToken, useValue : lookupLists },
   { provide: XHRBackend, useClass: MockXHRBackend}
   ],
   bootstrap: [AppComponent]

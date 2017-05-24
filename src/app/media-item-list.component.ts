@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
 import {MediaItemService} from './media-item.service';
 
 @Component({
@@ -9,15 +10,31 @@ import {MediaItemService} from './media-item.service';
 
 export class MediaItemListComponent{
     
-    mediaItems;
+    mediaItems = [];
     mediaType;
-    constructor(private mediaItemService : MediaItemService){
+    paramsSubscription;
+
+    constructor(private mediaItemService : MediaItemService, 
+        private activatedRoute: ActivatedRoute){
           
     }
 
     // fetching all media items
     ngOnInit(){
-       this.getMediaItems(this.mediaType);
+       this.paramsSubscription = this.activatedRoute.params
+       .subscribe(params => {
+           let mediaType = params['mediaType'];
+           if(mediaType.toLowerCase() === 'all'){
+              mediaType = "";
+           }
+
+           this.getMediaItems(mediaType);
+       })
+    }
+    
+    //finally unsubscribe the params subscription 
+    ngOnDestroy(){
+        this.paramsSubscription.unsubscribe();
     }
     
     // method to delete the media item.

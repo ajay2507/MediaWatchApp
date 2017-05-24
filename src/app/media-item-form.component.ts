@@ -1,7 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/Router';
+ 
 import { MediaItemService } from './media-item.service';
-import { lookupList, lookupListToken } from './media-providers';
+import { lookupLists, lookupListToken } from './media-providers';
+
 
 
 @Component({
@@ -15,8 +18,10 @@ export class MediaItemFormComponent{
   
 
 	constructor(private formBuilder : FormBuilder, private mediaItemService : 
-               MediaItemService, @Inject(lookupListToken) public lookupLists){
-
+               MediaItemService, 
+               @Inject(lookupListToken) public lookupLists
+               ){
+   //  console.log("inside form method");
 	}
     
     //called on initialization
@@ -50,7 +55,11 @@ export class MediaItemFormComponent{
 	}}
 
     //submitting a function by clicking save button
+    //after submitting it redirects to same movietype list
 	 onSubmit(mediaItem) {
-        this.mediaItemService.addMediaItems(mediaItem).subscribe();
+        this.mediaItemService.addMediaItems(mediaItem).subscribe(
+          () => {
+              //this.router.navigate(['/',mediaItem.mediaType]);
+          });
     }
 }
