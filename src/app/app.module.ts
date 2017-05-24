@@ -10,10 +10,11 @@ import { MediaItemFormComponent } from './media-item-form.component';
 import { FavoriteDirective } from './favorite.directive';
 import { CategoryListPipe } from './category-list.pipe';
 
-import { MediaItemService } from './media-item.service'
+import { MediaItemService } from './media-item.service';
 
-import { lookupList, lookupListToken } from './media-providers'
-import { MockXHRBackend } from './mock-xhr-backend'
+import { lookupList, lookupListToken } from './media-providers';
+import { MockXHRBackend } from './mock-xhr-backend';
+import { routing } from './media.routing';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MockXHRBackend } from './mock-xhr-backend'
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [
   MediaItemService,
