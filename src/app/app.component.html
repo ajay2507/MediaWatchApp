@@ -1,18 +1,30 @@
-<nav>
-    <a routerLink= "/">
-        <img src="media/04.png" class="icon" />
-    </a>
-    <a routerLink= "/Movies">
-        <img src="media/03.png" class="icon" />
-    </a>
-    <a routerLink= "/Series">
-        <img src="media/02.png" class="icon" />
-    </a>
-</nav>
-<section>
+ <!-- Header section -->
     <header>
-        <h1>Media Watch List</h1>
-        <p class="description">Keeping track of the media I want to watch.</p>
+      
+      <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand large">MoviesWatchApp</a>
+         <!--  <p class="navbar-brand small">Keeping track of the media I want to watch.</p> -->
+
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="medium" routerLink= "/" >All</a></li>
+             <li><a class="medium" routerLink= "/Movies">Movies</a></li>
+              <li><a class="medium" routerLink= "/Series">Series</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+        
     </header>
+ <section>
     <router-outlet></router-outlet>
 </section>
